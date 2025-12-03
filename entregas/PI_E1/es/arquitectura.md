@@ -73,14 +73,9 @@ Diagrama simplificado de la comunicación entre elementos:
 
 ```mermaid
 flowchart LR
-    subgraph Clients
-        P[Professional - Web browser]
-        C[Client - Web browser]
-    end
-
-    P --> API[Backend API (Python)]
-    C --> API
-
+    P[Professional - Web browser] --> API[Backend API]
+    C[Client - Web browser] --> API
     API --> DB[(Database - SQLite)]
-    API --> PAY[Payment Gateway (Stripe/PayPal - test)]
-    API --> MAIL[Email Service (Notifications)]
+    API --> PAY[Payment Gateway]
+    API --> MAIL[Email Service]
+```

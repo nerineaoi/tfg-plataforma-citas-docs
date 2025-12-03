@@ -1,5 +1,5 @@
 
-:🇬🇧: English 
+## 🇬🇧 English 
 #Integrated Project Deliverables
 
 - `PI_E0` – Initial project selection and description.
@@ -9,7 +9,7 @@
 
 ---
 
-:es: Español
+## :es: Español
 # Entregas del Proyecto Integrado
 
 - `PI_E0` – Elección y descripción inicial del proyecto.

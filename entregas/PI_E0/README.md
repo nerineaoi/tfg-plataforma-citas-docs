@@ -1,3 +1,15 @@
+
+🇬🇧 English 
+#Integrated Project Deliverables
+
+- `PI_E0` – Initial project selection and description.
+- `PI_E1` – Specification and analysis (in progress).
+- `PI_E2` – Development and implementation (pending).
+- `PI_E3` – Deployment, testing and final report (pending).
+
+---
+
+🇪🇸 Español
 # Entregas del Proyecto Integrado
 
 - `PI_E0` – Elección y descripción inicial del proyecto.

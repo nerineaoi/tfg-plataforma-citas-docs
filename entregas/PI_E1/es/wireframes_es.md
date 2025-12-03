@@ -9,6 +9,7 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 
 ### 1.1. Página pública del profesional
 
+```text
 +----------------------------------------+
 |     Nombre del profesional             |
 |  Foto / Avatar (opcional)              |
@@ -20,11 +21,12 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 |----------------------------------------|
 |  Botón: Reservar cita                  |
 +----------------------------------------+
-
+```
 ---
 
 ### 1.2. Selección de servicio y fecha (cliente)
 
+```text
 +----------------------------------------+
 |  Seleccionar servicio                  |
 |   [Servicio A] [Servicio B]            |
@@ -33,11 +35,12 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 |   < Mes anterior   Mes siguiente >     |
 |   Calendario con días disponibles      |
 +----------------------------------------+
-
+```
 ---
 
 ### 1.3. Selección de hora y datos del cliente
 
+```text
 +----------------------------------------+
 |  Horas disponibles                     |
 |    [10:00] [11:00] [11:30] [...]       |
@@ -48,11 +51,12 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 |----------------------------------------|
 |  Botón: Confirmar reserva              |
 +----------------------------------------+
-
+```
 ---
 
 ### 1.4. Pantalla de pago (modo test)
 
+```text
 +----------------------------------------+
 |  Resumen de la cita                    |
 |  Servicio: X                           |
@@ -60,11 +64,12 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 |----------------------------------------|
 |  Botón: Proceder al pago               |
 +----------------------------------------+
-
+```
 ---
 
 ### 1.5. Panel del profesional
 
+```text
 +----------------------------------------+
 |  Menú lateral                          |
 |   - Agenda                             |
@@ -76,7 +81,7 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 |   [Vista mensual / semanal]            |
 |   Citas listadas por día               |
 +----------------------------------------+
-
+```
 ---
 
 ## 2. Flujo de navegación (resumen)

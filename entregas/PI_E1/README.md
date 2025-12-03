@@ -1,6 +1,12 @@
-# Entregas del Proyecto Integrado
+# PI_E1 — Especificación y análisis
 
-- `PI_E0` – Elección y descripción inicial del proyecto.
-- `PI_E1` – Especificación y análisis (por completar).
-- `PI_E2` – Implementación y desarrollo (por completar).
-- `PI_E3` – Despliegue, pruebas y memoria final (por completar).
+Este directorio contiene los documentos correspondientes a la Entrega 1 del Proyecto Integrado.
+
+## Contenido
+
+- `actores-roles.md` — Actores y roles del sistema.
+- `casos-de-uso.md` — Funcionalidades principales / casos de uso.
+- `requisitos.md` — Requisitos funcionales y no funcionales.
+- `tecnologias.md` — Tecnologías previstas.
+- `arquitectura.md` — Boceto inicial de la arquitectura (cliente–servidor–BD).
+- `wireframes.md` — Primeros bocetos o mapa de navegación.

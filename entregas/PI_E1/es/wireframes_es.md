@@ -27,13 +27,14 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 ### 1.2. Selección de servicio y fecha (cliente)
 
 ```text
-Seleccionar servicio:
-[ Servicio A ] [ Servicio B ]
-
-Seleccionar fecha:
-< Mes anterior    Mes siguiente >
-
-[ Calendario con días disponibles ]
++----------------------------------------+
+|  Seleccionar servicio                  |
+|   [Servicio A] [Servicio B]            |
+|----------------------------------------|
+|  Seleccionar fecha                     |
+|   < Mes anterior   Mes siguiente >     |
+|   Calendario con días disponibles      |
++----------------------------------------+
 ```
 
 ---

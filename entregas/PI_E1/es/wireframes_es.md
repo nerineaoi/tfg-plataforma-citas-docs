@@ -11,7 +11,7 @@ Los wireframes son esquemáticos y representan la estructura general sin diseño
 
 ```text
 +----------------------------------------+
-|  Nombre del profesional             |
+|  Nombre del profesional                |
 |  Foto / Avatar (opcional)              |
 |  Descripción corta                     |
 |----------------------------------------|

@@ -8,57 +8,63 @@ Este documento recoge los requisitos funcionales y no funcionales de la platafor
 
 A continuación se describen los principales requisitos funcionales del sistema.
 
-### RF1 – Gestión de profesionales
+En esta sección se detallan las funciones que debe ofrecer la plataforma para cumplir su propósito básico: permitir a profesionales y clientes gestionar citas con pago integrado, dentro de unas reglas de agenda y cancelación configurables.
 
-- El sistema permitirá que un profesional se registre y pueda iniciar sesión de forma segura.
-- El sistema permitirá que el profesional recupere o restablezca su contraseña mediante un mecanismo controlado (por ejemplo, enlace de recuperación por correo).
+### RF1. Registro de profesionales
+- El sistema permite que un profesional se registre creando una cuenta con sus datos básicos y acceder posteriormente a su panel privado.
 
-### RF2 – Perfil profesional
+### RF2. Registro de clientes
+- El sistema permite que un cliente cree una cuenta para poder reservar citas, acceder a su panel y consultar su historial.
 
-- El sistema permitirá que el profesional edite su perfil (nombre, descripción, especialidad, datos de contacto básicos).
-- El sistema mostrará una versión pública del perfil, accesible para los clientes sin autenticación.
+### RF3. Autenticación y cambio de modo
+- El sistema permite iniciar sesión como cliente o como profesional y, en cuentas con ambos roles, cambiar de modo desde el propio panel sin crear usuarios duplicados.
 
-### RF3 – Gestión de servicios
+### RF4. Gestión del perfil profesional
+- El profesional puede configurar y actualizar su perfil público (nombre o marca, logo, descripción breve, datos de contacto visibles, dirección profesional cuando proceda).
 
-- El sistema permitirá que el profesional defina los servicios que ofrece (nombre, duración, precio, modalidad presencial/online).
-- El sistema permitirá activar o desactivar servicios sin necesidad de eliminarlos definitivamente.
+### RF5. Gestión de datos de cuenta y datos fiscales
+- El profesional puede modificar sus datos internos de cuenta (correo, contraseña, idioma, zona horaria) e introducir los datos fiscales necesarios para la facturación.
+El cliente puede actualizar sus datos de perfil y de acceso.
 
-### RF4 – Gestión de disponibilidad
+### RF6. Gestión de servicios
+- El profesional puede crear, modificar, desactivar o reactivar los servicios que ofrece, definiendo nombre, duración, modalidad (online/presencial) y precio.
 
-- El sistema permitirá que el profesional configure su disponibilidad (días y franjas horarias).
-- El sistema permitirá bloquear días completos o franjas concretas (vacaciones, festivos, horas no disponibles).
-- El sistema generará huecos reservables en función de la disponibilidad y la duración de los servicios.
+### RF7. Configuración de disponibilidad y reglas de agenda
+- El profesional puede definir su disponibilidad semanal, descansos mínimos, bloqueos puntuales (festivos, vacaciones, ausencias) y límites básicos de agenda.
 
-### RF5 – Visualización y reserva de citas por parte del cliente
+### RF8. Generación de huecos reservables
+- El sistema genera automáticamente los huecos de agenda disponibles en función de la configuración del profesional y de las citas ya registradas, evitando solapes.
 
-- El sistema permitirá que el cliente seleccione un servicio disponible de un profesional.
-- El sistema mostrará al cliente las franjas horarias libres en función del servicio elegido.
-- El sistema permitirá que el cliente introduzca sus datos básicos (nombre, correo electrónico) para completar la reserva.
-- El sistema registrará la cita en el calendario del profesional.
+### RF9. Exploración y búsqueda de profesionales
+- El cliente puede explorar el listado de profesionales disponibles y filtrarlos por criterios básicos (tipo de servicio, modalidad, rango de precios, idioma, etc.), así como acceder a su perfil público.
 
-### RF6 – Modificación y cancelación de citas
+### RF10. Reserva de cita por parte del cliente
+- El cliente puede seleccionar un servicio, elegir fecha y hora dentro de los huecos disponibles e introducir sus datos para crear una reserva en estado pendiente de pago o confirmación.
 
-- El sistema permitirá que el profesional consulte el listado de citas y su detalle.
-- El sistema permitirá que el profesional cancele una cita o la marque como no disponible.
-- El sistema permitirá que el cliente cancele o solicite cambio de cita dentro de las políticas definidas (por ejemplo, con una antelación mínima).
+### RF11. Gestión de citas desde el panel del profesional
+- El profesional puede consultar su calendario, crear citas manuales para un cliente concreto, modificar o cancelar reservas existentes, marcar citas como realizadas y añadir notas internas simples.
 
-### RF7 – Integración con pasarela de pago (modo test)
+### RF12. Gestión de citas desde el panel del cliente
+El cliente puede consultar sus próximas citas y su historial, así como modificar o cancelar reservas dentro de los límites establecidos por la política del profesional.
 
-- El sistema permitirá iniciar un proceso de pago asociado a una reserva de cita.
-- El sistema recibirá la confirmación (éxito o error) de la pasarela de pago en modo test.
-- El sistema registrará el estado del pago asociado a la cita (pendiente, pagado, error).
+### RF13. Procesamiento de pagos online
+- El sistema permite que el cliente realice el pago a través de la pasarela configurada. Solo se confirma definitivamente una cita cuando el pago se completa correctamente; el sistema registra el estado del pago.
 
-### RF8 – Notificaciones y recordatorios
+### RF14. Aplicación de política de cancelación y reembolso
+- Cuando una cita pagada se modifica o cancela, el sistema aplica automáticamente la política configurada por el profesional (plazos, reembolsos totales o parciales, pérdida de importe, etc.) y actualiza el estado del pago.
 
-- El sistema enviará un correo de confirmación al cliente tras completar la reserva.
-- El sistema enviará un recordatorio de la cita al cliente con una antelación configurable.
-- El sistema podrá notificar al profesional nuevas reservas, cambios o cancelaciones.
+### RF15. Generación y consulta de facturas
+- Cuando una cita pasa a estado pagada o completada, el sistema genera una factura asociada.
+El profesional puede consultar el historial de facturas y descargarlas o enviarlas al cliente, y el cliente puede descargar sus propias facturas desde su panel.
 
-### RF9 – Panel de control del profesional
+### RF16. Notificaciones automáticas
+- El sistema envía correos automáticos de confirmación, recordatorio y avisos de cambio o cancelación al cliente y al profesional, según el estado de cada cita.
 
-- El sistema mostrará al profesional un calendario con sus citas programadas.
-- El sistema permitirá filtrar citas por fecha, estado (pendiente, realizada, cancelada) y servicio.
-- El sistema mostrará un resumen básico de actividad (número de citas en un periodo, servicios más reservados, etc.) en versiones futuras.
+### RF17. Historial y trazabilidad básica
+- El sistema mantiene el historial de citas, pagos y facturas de cada profesional y cliente, de forma que puedan consultarse desde los paneles correspondientes.
+
+### RF18. Gestión básica por parte del administrador
+- El administrador puede crear cuentas de profesionales en casos excepcionales, activar o desactivar usuarios (clientes o profesionales) y consultar de forma agregada la actividad del sistema (citas, pagos, incidencias) para tareas de supervisión y soporte.
 
 ---
 

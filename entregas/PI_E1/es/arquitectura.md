@@ -73,9 +73,32 @@ Diagrama simplificado de la comunicación entre elementos:
 
 ```mermaid
 flowchart LR
-    P[Profesional - Navegador Web] --> API[Backend API]
-    C[Cliente - Navegador Web] --> API
-    API --> DB[(Base de datos - SQLite)]
-    API --> PAY[Pasarela de pago]
-    API --> MAIL[Servicio de correo]
+
+    %% NAVEGADORES
+    P[Profesional - Navegador web]
+    C[Cliente - Navegador web]
+
+    %% BACKEND
+    API[Backend API\n(zona cliente + zona profesional\nlógica interna y automatismos)]
+
+    %% COMPONENTES EXTERNOS / PERSISTENCIA
+    DB[(Base de datos\nSQLite)]
+    PAY[Pasarela de pago]
+    MAIL[Servicio de correo]
+    AUTO[Procesos automáticos\n(notificaciones, facturas, reembolsos)]
+
+    %% FLUJO NAVEGADOR -> BACKEND
+    P --> API
+    C --> API
+
+    %% RESPUESTAS DEL BACKEND
+    API --> P
+    API --> C
+
+    %% ACCESO A BD Y SERVICIOS EXTERNOS
+    API --> DB
+    API --> PAY
+    API --> MAIL
+    API --> AUTO
+
 ```

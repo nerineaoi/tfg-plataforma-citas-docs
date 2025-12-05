@@ -74,21 +74,38 @@ Diagrama simplificado de la comunicación entre elementos:
 ```mermaid
 flowchart LR
 
-    P[Profesional - Navegador web]
-    C[Cliente - Navegador web]
+    %% LEFT COLUMN: FORCE ALIGNMENT USING SEPARATE SUBGRAPHS
+    subgraph CBOX[ ]
+        direction TB
+        C[Cliente - Navegador web]
+    end
 
-    API[Backend API - zona cliente y profesional - logica de negocio y automatismos]
+    subgraph PBOX[ ]
+        direction TB
+        P[Profesional - Navegador web]
+    end
 
-    DB[(Base de datos SQLite)]
-    PAY[Pasarela de pago]
-    MAIL[Servicio de correo]
-    AUTO[Procesos automaticos - notificaciones y facturas]
+    subgraph ABOX[ ]
+        direction TB
+        A[Administrador - Navegador web]
+    end
 
-    P --> API
+    %% CENTER
+    API[Backend API - zona cliente, profesional y admin<br/>lógica de negocio y automatismos]
+
+    %% RIGHT COLUMN
+    subgraph INFRA[ ]
+        direction TB
+        DB[(Base de datos SQLite)]
+        PAY[Pasarela de pago]
+        MAIL[Servicio de correo]
+        AUTO[Procesos automáticos]
+    end
+
+    %% CONNECTIONS
     C --> API
-
-    API --> P
-    API --> C
+    P --> API
+    A --> API
 
     API --> DB
     API --> PAY

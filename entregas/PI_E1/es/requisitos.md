@@ -1,4 +1,4 @@
-# Requisitos funcionales y no funcionales
+# Requisitos funcionales, no funcionales y reglas de negocio
 
 Este documento recoge los requisitos funcionales y no funcionales de la plataforma de gestión de citas para profesionales autónomos y pequeñas empresas.
 
@@ -70,43 +70,92 @@ El profesional puede consultar el historial de facturas y descargarlas o enviarl
 
 ## 2. Requisitos no funcionales
 
-### RNF1 – Usabilidad
+RNF1 - Navegadores compatibles
+- La plataforma debe funcionar correctamente en los navegadores modernos más utilizados (Chrome, Firefox, Edge y Safari).
+El diseño debe ser responsive y usable en pantallas de diferentes tamaños.
 
-- La interfaz será sencilla y coherente, pensada para usuarios no técnicos.
-- La plataforma será accesible desde los principales navegadores modernos.
-- Se priorizará un flujo de reserva claro para minimizar errores del usuario.
 
-### RNF2 – Rendimiento
+### RNF2 - Rendimiento y tiempos de respuesta
+- Las operaciones habituales (cargar agenda, consultar servicios, crear una reserva…) deben completarse en menos de 2 segundos bajo carga normal.
+Las acciones que dependan de servicios externos (correo o pasarela de pago) deben mostrar feedback al usuario mientras se procesan.
 
-- Las páginas principales (perfil del profesional y flujo de reserva) deberán cargarse en un tiempo razonable en conexiones domésticas estándar.
-- Las operaciones comunes (consultar disponibilidad, crear una reserva) deberán completarse en pocos segundos, salvo incidencias externas (pasarela de pago, correo).
 
-### RNF3 – Seguridad
+### RNF3 - Seguridad de acceso y contraseñas
+- Las contraseñas deben almacenarse mediante hashing seguro.
+El sistema debe proteger el acceso a zonas privadas mediante autenticación obligatoria y validar sesiones activas.
 
-- El acceso al panel del profesional estará protegido mediante autenticación.
-- Las contraseñas se almacenarán cifradas (hash) en la base de datos.
-- La comunicación con la aplicación deberá realizarse preferentemente sobre HTTPS en el entorno de despliegue.
-- No se almacenarán datos completos de tarjeta en la aplicación; el pago se gestionará a través de la pasarela externa.
 
-### RNF4 – Fiabilidad e integridad de datos
+### RNF4 - Protección de datos personales
+- Los datos de clientes y profesionales deben tratarse siguiendo buenas prácticas de privacidad.
+El acceso a los datos de las cuentas solo debe permitirse a su propietario o al administrador en casos justificados (soporte técnico).
 
-- El sistema deberá evitar dobles reservas para el mismo hueco y servicio.
-- Las operaciones de creación, modificación y cancelación de citas deberán mantener la coherencia entre calendario, disponibilidad y estado del pago.
-- En caso de error de la pasarela de pago, la cita quedará marcada como no pagada o pendiente de confirmación.
 
-### RNF5 – Mantenibilidad
+### RNF5 - Persistencia y consistencia de datos
+- Toda la información de usuarios, citas, pagos, disponibilidad y facturas debe almacenarse en una base de datos SQLite de forma persistente, garantizando la integridad de las relaciones y evitando solapes en las reservas.
 
-- El código del backend se organizará en módulos claros (gestión de agenda, pagos, notificaciones, etc.).
-- Se documentarán a alto nivel los endpoints principales de la API y la estructura básica de la base de datos.
-- Se utilizarán tecnologías estándar (Python, Flask/FastAPI, SQLite) para facilitar la futura evolución del proyecto.
 
-### RNF6 – Escalabilidad básica
+### RNF6 - Disponibilidad del servicio
+- El sistema debe ser capaz de funcionar sin fallos críticos en la lógica principal (registro, reservas, paneles y agenda) durante el uso normal por parte de clientes y profesionales.
 
-- Aunque se use SQLite en el TFG, el diseño permitirá migrar a otro motor de base de datos si fuese necesario (por ejemplo, PostgreSQL).
-- La separación entre frontend, API y base de datos facilitará, en el futuro, la distribución de la carga.
 
-### RNF7 – Cumplimiento legal (orientativo)
+### RNF7 - Conexión con servicios externos
+- La comunicación con la pasarela de pago (modo test) y el servicio de correo debe realizarse mediante llamadas seguras y controladas, gestionando errores y respuestas inesperadas.
 
-- El sistema deberá contemplar el uso de datos personales de acuerdo con la normativa vigente (por ejemplo, RGPD).
-- Se informará al usuario del uso de sus datos personales en el contexto de la reserva de citas.
-- El almacenamiento de datos se limitará a la información necesaria para la gestión de las citas y la facturación.
+
+### RNF8 - Mantenibilidad y modularidad del código
+- El backend debe estar estructurado por módulos (usuarios, agenda, servicios, pagos, facturas) para facilitar ampliaciones futuras sin alterar el funcionamiento existente.
+- El proyecto debe estar versionado mediante Git y organizado en ramas y commits descriptivos.
+
+
+### RNF9 - Usabilidad y experiencia de usuario
+- La navegación debe ser clara, con menús diferenciados para clientes y profesionales.
+- Los paneles deben mostrar información organizada (calendario, historial, facturas) y ofrecer mensajes claros ante errores o acciones incompletas.
+
+
+### RNF10 - Automatismos sin intervención manual
+- Los procesos automáticos (recordatorios, cancelaciones por falta de pago, generación de facturas) deben ejecutarse sin intervención del profesional, garantizando consistencia entre citas, pagos y facturas.
+
+
+### RNF11 - Escalabilidad básica
+- Aunque la versión inicial utiliza SQLite, la arquitectura debe permitir migrar en el futuro a otro gestor de base de datos sin reescribir toda la aplicación.
+
+## 4.3 Reglas de Negocio
+
+### RN1. Una cita solo puede reservarse en un hueco disponible
+Una cita solo puede crearse dentro de los intervalos generados automáticamente según la disponibilidad configurada por el profesional.
+
+
+### RN2. No puede haber solapamiento de citas
+El sistema debe impedir que se reserven dos citas que ocupen parcial o totalmente el mismo slot de tiempo para un mismo profesional.
+
+
+### RN3. El precio de la sesión depende del servicio configurado
+El importe de cualquier pago se calcula exclusivamente a partir de los datos del servicio (precio, duración y modalidad).
+
+
+### RN4. Una cita solo pasa a estado “confirmada” tras un pago correcto
+Las citas en modo test se confirman únicamente si la pasarela responde “pago correcto”.
+
+
+### RN5. La política de cancelación del profesional determina si hay reembolso
+El sistema debe aplicar las reglas configuradas por el profesional (horas mínimas de aviso, reembolso total o sin reembolso).
+
+
+### RN6. Cada pago está asociado a exactamente una cita
+Un pago no puede relacionarse con múltiples citas ni existir sin referencia a una cita.
+
+
+### RN7. Cada factura está asociada a exactamente un pago
+Una factura sólo se genera automáticamente cuando existe un pago confirmado.
+
+
+### RN8. El administrador no puede modificar datos críticos
+El administrador únicamente puede consultar datos o corregir aspectos menores para diagnóstico, sin alterar reservas, pagos ni facturas.
+
+
+### RN9. Un usuario puede tener uno o varios roles
+Un mismo usuario puede actuar como cliente y profesional, pero mantiene una única cuenta.
+
+
+### RN10. El sistema genera notificaciones automáticamente según eventos
+Los recordatorios, confirmaciones, cancelaciones automáticas y facturas deben generarse sin intervención manual.

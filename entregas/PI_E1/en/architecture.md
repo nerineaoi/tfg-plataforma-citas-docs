@@ -73,25 +73,43 @@ Simplified diagram of the communication between components:
 ```mermaid
 flowchart LR
 
-    P[Professional - Web browser]
-    C[Client - Web browser]
+    %% LEFT COLUMN
+    subgraph CBOX[ ]
+        direction TB
+        C[Client - Web browser]
+    end
 
-    API[Backend API - public and private endpoints - business logic and automations]
+    subgraph PBOX[ ]
+        direction TB
+        P[Professional - Web browser]
+    end
 
-    DB[(SQLite database)]
-    PAY[Payment gateway]
-    MAIL[Email service]
-    AUTO[Automatic processes - notifications and invoices]
+    subgraph ABOX[ ]
+        direction TB
+        A[Administrator - Web browser]
+    end
 
-    P --> API
+    %% CENTER
+    API[Backend API - client, professional and admin<br/>business logic and automations]
+
+    %% RIGHT COLUMN
+    subgraph INFRA[ ]
+        direction TB
+        DB[(SQLite database)]
+        PAY[Payment gateway]
+        MAIL[Email service]
+        AUTO[Automatic processes]
+    end
+
+    %% CONNECTIONS
     C --> API
-
-    API --> P
-    API --> C
+    P --> API
+    A --> API
 
     API --> DB
     API --> PAY
     API --> MAIL
     API --> AUTO
+
 
 ```

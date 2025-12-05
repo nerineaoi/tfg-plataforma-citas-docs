@@ -72,9 +72,26 @@ In future stages the project could migrate to another database engine (e.g., Pos
 Simplified diagram of the communication between components:
 ```mermaid
 flowchart LR
-    P[Professional - Web browser] --> API[Backend API]
-    C[Client - Web browser] --> API
-    API --> DB[(Database - SQLite)]
-    API --> PAY[Payment Gateway]
-    API --> MAIL[Email Service]
+
+    P[Professional - Web browser]
+    C[Client - Web browser]
+
+    API[Backend API - public and private endpoints - business logic and automations]
+
+    DB[(SQLite database)]
+    PAY[Payment gateway]
+    MAIL[Email service]
+    AUTO[Automatic processes - notifications and invoices]
+
+    P --> API
+    C --> API
+
+    API --> P
+    API --> C
+
+    API --> DB
+    API --> PAY
+    API --> MAIL
+    API --> AUTO
+
 ```

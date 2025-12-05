@@ -77,12 +77,12 @@ flowchart LR
     P[Profesional - Navegador web]
     C[Cliente - Navegador web]
 
-    API[Backend API (zona cliente y profesional, lógica interna y automatismos)]
+    API[Backend API - zona cliente y profesional - logica de negocio y automatismos]
 
     DB[(Base de datos SQLite)]
     PAY[Pasarela de pago]
     MAIL[Servicio de correo]
-    AUTO[Procesos automáticos (notificaciones, facturas, reembolsos)]
+    AUTO[Procesos automaticos - notificaciones y facturas]
 
     P --> API
     C --> API
@@ -94,6 +94,5 @@ flowchart LR
     API --> PAY
     API --> MAIL
     API --> AUTO
-
 
 ```

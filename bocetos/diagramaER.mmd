@@ -35,8 +35,10 @@ erDiagram
 
     FACTURA {
         int id_factura PK
-        float total
         date fecha_emision
+        float total
+        string nombre_fiscal
+        string identificacion_fiscal
     }
 
     PAGO {

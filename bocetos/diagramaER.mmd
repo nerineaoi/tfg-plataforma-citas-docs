@@ -1,0 +1,55 @@
+erDiagram
+    USUARIO {
+        int id_usuario PK
+        string nombre
+        string email
+        string telefono
+        string rol
+    }
+
+    PROFESIONAL {
+        int id_profesional PK
+        string especialidad
+        string descripcion
+    }
+
+    SERVICIO {
+        int id_servicio PK
+        string nombre
+        int duracion
+        float precio
+    }
+
+    CITA {
+        int id_cita PK
+        datetime fecha_hora
+        string estado
+    }
+
+    DISPONIBILIDAD {
+        int id_disponibilidad PK
+        date fecha
+        time hora_inicio
+        time hora_fin
+    }
+
+    FACTURA {
+        int id_factura PK
+        float total
+        date fecha_emision
+    }
+
+    PAGO {
+        int id_pago PK
+        float importe
+        string metodo
+        string estado
+    }
+
+    USUARIO ||--o{ CITA : reserva
+    PROFESIONAL ||--o{ CITA : atiende
+    PROFESIONAL ||--o{ SERVICIO : ofrece
+    SERVICIO ||--o{ CITA : incluye
+    PROFESIONAL ||--o{ DISPONIBILIDAD : define
+    CITA ||--|| FACTURA : genera
+    FACTURA ||--|| PAGO : registra
